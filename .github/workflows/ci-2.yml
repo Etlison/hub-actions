@@ -28,4 +28,4 @@ jobs:
         run: echo "The time was ${{ steps.buildAndPushImage.outputs.image_pull_url }}"
 
       - name: Run Docker Container
-        run: docker run -d -p 4000:8080 --name webapp-04 ${{ steps.buildAndPushImage.outputs.image_pull_url }}
+        run: docker run -d -p 4000:8080 --name webapp-04 docker.io/my-app:v1.0
