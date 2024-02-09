@@ -1,4 +1,4 @@
-name: Docker CI with Gradle and Docker
+name: Docker CI with Gradle and Docker Build
 
 on:
   push:
