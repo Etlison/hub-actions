@@ -14,21 +14,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build Docker Image
-        id: buildAndPushImage
+        id: buildImage
         uses: MaximilianoBz/dockerhub-buildpush@v1.0
         with:
           registry_url: 'docker.io'
-          repository_name: 'etlison/demo-app'  # Changed repository name to "etlison/my-app"
+          repository_name: 'etlison/my-app'  # Changed repository name to "etlison/my-app"
           user_name: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           image_version: 'v1.0'
           docker_file: '.'
-
-      - name: Get pre step result output image_pull_url
-        run: echo "The time was ${{ steps.buildAndPushImage.outputs.image_pull_url }}"
-
-      - name: Login to Docker Hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Run Docker Container
-        run: docker run -d -p 4000:8080 --name webapp-04 docker.io/etlison/my-app:v1.0
